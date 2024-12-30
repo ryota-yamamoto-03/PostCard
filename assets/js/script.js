@@ -24,6 +24,7 @@ const omikujiResults = [
   const card = document.getElementById('card');
   const omikujiResultElement = document.getElementById('omikuji-result');
   const shareButton = document.getElementById('share-btn');
+  const saveButton = document.getElementById('save-btn');
 
   card.addEventListener('click', () => {
     // 裏面を表示したときにおみくじを引く
@@ -33,8 +34,18 @@ const omikujiResults = [
 
       // Twitterシェア用のURLを設定
       const tweetText = encodeURIComponent(`🎍 新年のおみくじ結果 🎍\n${result}\n皆さんも引いてみてね！`);
-      const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&hashtags=新年おみくじ`;
+      const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&hashtags=新年みくじ`;
       shareButton.href = tweetUrl;
     }
     card.classList.toggle('flip');
+  });
+
+  // 結果を写真として保存
+  saveButton.addEventListener('click', () => {
+    html2canvas(document.querySelector('.back')).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'omikuji_result.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
   });
