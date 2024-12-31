@@ -33,7 +33,7 @@ const omikujiResults = [
       omikujiResultElement.textContent = result;
 
       // Twitterシェア用のURLを設定
-      const tweetText = encodeURIComponent(`🎍 新年のおみくじ結果 🎍\n${result}\n皆さんも引いてみてね！`);
+      const tweetText = encodeURIComponent(`🎍 新年のおみくじ結果 🎍\n${result}\n`);
       const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&hashtags=新年みくじ`;
       shareButton.href = tweetUrl;
     }
